@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: hejtado
+  name: hejtado-quido-deployment
+  labels:
+    name: hejtado-quido
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hejtado-quido
+  template:
+    metadata:
+      labels:
+        app: hejtado-quido
+    spec:
+      containers:
+      - name: hejtado-quido
+        image: jas02/hejtado-quido:0.3.1
+        env:
+        - name: FLASK_ENV
+          value: "production"
+      restartPolicy: Always
